@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const AiModel = require("./utils/OpenAi");
 const threadModel = require("./models/thread");
 const chatModel = require("./models/chat");
+const chatRoutes = require("./routes/chat");
 require("dotenv").config();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -13,8 +14,5 @@ app.listen(3000,()=>{
 mongoose.connect(`${process.env.MongoDBURL}`).then(()=>{
     console.log("Connected To An Databace");
 })
-async function test(){
-  console.log( await AiModel("Thanks"));
-}
-test();
+app.use("/chats",chatRoutes);
 
