@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const threadModel = require("../models/thread");
+const chatModel = require("../models/chat");
+const chatgpt = require("../utils/OpenAi");
 // Route To Access An All the Threads
 router.get("/threads",async(req,resp)=>{
     try{
@@ -38,6 +40,62 @@ router.delete("/threads/:thread_id",async(req,resp)=>{
         resp.send(err);
     }
     resp.send("Thread Was Deleted!");
+})
+
+router.post("/chat",async(req,resp)=>{ 
+    try{   
+    let thread;
+    let{thread_id,message} =  req.body;
+    if(!message){
+        resp.status(404).send("Please Enter An Required Fields!");
+    }
+    if(!thread_id){
+        // if An Thread Id Not given it Means It is An New Chat
+        let newThread = new threadModel({
+            title:message
+        })
+        let newChat = new chatModel({
+            content:message,
+            role:"user"
+        })
+        newThread.chats.push(newChat._id);
+        newThread.title = message;
+       await newThread.save();
+       await newChat.save();
+       thread = newThread;
+    }
+    if(thread_id){
+        // fetch An thread First
+        let thread2 = await threadModel.findById(thread_id);
+        if(!thread2){
+            resp.status(404).send("Enter An Valid Thread_ID!");
+        }
+        else{
+            // Now Both Are Present
+            let chat1 = new chatModel({
+                role:"user",
+                content:message
+            })
+            await thread2.chats.push(chat1._id)
+            thread2.save();
+            await chat1.save();
+            thread = thread2;
+        }
+    }
+     const responce = await chatgpt(message);
+             let chat2 = new chatModel({
+                role:"assistant",
+                content:responce
+            })
+           await thread.chats.push(chat2._id);
+           thread.updatedAt = new Date();
+           thread.save();
+           chat2.save();
+           resp.send(responce);
+        }
+        catch(err){
+            resp.status(404).send("Something Went Wrong!");
+        }
 })
     
 module.exports = router;

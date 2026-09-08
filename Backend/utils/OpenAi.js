@@ -16,5 +16,4 @@ const response = await client.chat.completions.create({
 });
  return response.choices[0].message.content;
 }
-
 module.exports = openAiResponce;
