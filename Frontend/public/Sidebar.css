@@ -1,4 +1,34 @@
-Sidebar{
-    border: 2px solid white;
-    margin-left: 0px !important;
+
+.ChatGptLogo{
+    height: 65px;
+    width: 65px;
+    margin-left: 10px;
+}
+.first-row{
+    margin: 0px !important;
+    padding: 0px !important;
+}
+.r2{
+    display: flex !important;
+    flex-direction: row !important;
+    margin-left: 10px;
+    margin-top: 13px;
+    height: 3rem;
+    margin-bottom: 0px !important;
+    margin-top: 0px !important;
+    height: 2.4rem;
+}
+.r2:hover{
+  background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    display: flex !important;
+    flex-direction: row !important;
+    margin-left: 10px;
+    margin-top: 13px;
+   height: 2.4rem;
+}
+.outer{
+    margin: 0px !important;
+    padding: 0px !important;
+    width: 18rem;
 }
