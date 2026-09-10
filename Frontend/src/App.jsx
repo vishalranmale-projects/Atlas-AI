@@ -6,7 +6,8 @@ function App() {
     <>
    <div className="container-fluid">
     <div className="row">
-      <div className="col-2 sidebar"><Sidebar></Sidebar></div>
+      <div className="col-1 sidebar"><Sidebar></Sidebar></div>
+      <div className="col-1"></div>
       <div className="col-10"><ChatWindow></ChatWindow></div>
     </div>
    </div>

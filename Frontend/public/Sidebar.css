@@ -1,34 +1,83 @@
-
-.ChatGptLogo{
-    height: 65px;
-    width: 65px;
-    margin-left: 10px;
+.ChatGptLogo {
+  height: 65px;
+  width: 65px;
+  margin-left: 10px;
 }
-.first-row{
-    margin: 0px !important;
-    padding: 0px !important;
+.first-row {
+  margin: 0px !important;
+  padding: 0px !important;
+  width:17.5rem !important;
+  margin-top: 10px !important;
+  margin-left: 10px !important;
 }
-.r2{
-    display: flex !important;
-    flex-direction: row !important;
-    margin-left: 10px;
-    margin-top: 13px;
-    height: 3rem;
-    margin-bottom: 0px !important;
-    margin-top: 0px !important;
-    height: 2.4rem;
-}
-.r2:hover{
+.first-row:hover {
   background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    display: flex !important;
-    flex-direction: row !important;
-    margin-left: 10px;
-    margin-top: 13px;
-   height: 2.4rem;
+  border-radius: 10px;
 }
-.outer{
+.r2 {
+  display: flex !important;
+  flex-direction: row !important;
+  margin-left: 10px;
+  margin-top: 13px;
+  height: 3rem;
+  margin-bottom: 0px !important;
+  margin-top: 0px !important;
+  height: 2.4rem;
+}
+.r2:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  display: flex !important;
+  flex-direction: row !important;
+  margin-left: 10px;
+  margin-top: 13px;
+  height: 2.4rem;
+}
+.outer {
+  margin: 0px !important;
+  padding: 0px !important;
+  width: 18rem;
+}
+.History {
+  margin-top: 0px !important;
+  height: 1.5rem !important;
+  list-style-type: none;
+  cursor: pointer;
+  padding-left: 20px !important;
+  padding-top: 8px;
+  width: 15.8rem;
+}
+.History:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+.sidebar{
+    height: 100vh;
+    margin-left:0px !important;
     margin: 0px !important;
     padding: 0px !important;
+    /* width: 18rem; */
+}
+a{
+    text-decoration: none;
     width: 18rem;
+}
+.bottom{
+     display: flex !important;
+    flex-direction: column !important; 
+    width:19rem;
+    margin-bottom: 2rem;
+    padding-bottom: 20px;
+    justify-content: center;
+}
+.Line{
+    border-top: 2px solid white;
+    margin-left: 0.8rem;
+}
+.bottom-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 15px;
+    padding-bottom: 0px !important;
 }
