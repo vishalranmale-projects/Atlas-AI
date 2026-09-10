@@ -1,5 +1,50 @@
-.chatwindow{
-    border:2px solid white;
+.chatwindow {
     height: 100vh;
     margin-left: 45px;
+    width: 75rem
+}
+
+.Nav {
+    height: 2.5rem;
+    width: 100%;
+    margin: 0.5rem 0;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    margin-top: 23px;
+}
+.middle{
+    margin-left: 28rem;
+    background-color: oklab(28.499999999999996% 0.06462 -0.09784);
+    width:8rem;
+    height:2.3rem;  
+    border-radius: 12px;
+}
+.right{
+    display: flex !important;
+   flex-direction: row;
+    margin-left:auto;
+    padding-right: 25px;
+    gap:30px
+}
+.mainArea{
+    
+    height: 33rem;
+    margin-top: 10px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.chatInp{
+    background-color: rgba(255, 255, 255, 0.2);
+    height:3.2rem;
+    margin-top: 18px;
+    border-radius: 15px;
+    display: inline !important;
+    font-size: 1.2rem;
+    width: 40rem;
+    text-align: center;
+    margin-left: 4.8rem;
+}
+.sendIcon{
+    margin-top: 2.4rem;
 }

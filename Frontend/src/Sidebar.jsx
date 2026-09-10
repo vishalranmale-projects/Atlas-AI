@@ -8,7 +8,7 @@ function Sidebar() {
       >
         <div className="row first-row">
           <div className="col-1" style={{ margin: "0px", padding: "0px" }}>
-            <img src="./public/images.png" className="ChatGptLogo"></img>
+            <i class="fa-brands fa-openai ChatGptLogo"></i>
           </div>
           <div
             className="col-9"
@@ -17,7 +17,7 @@ function Sidebar() {
           <div className="col-2" style={{ margin: "0px", padding: "0px" }}>
             <i
               class="fa-solid fa-bars"
-              style={{ fontSize: "1.5rem", marginTop: "1.5rem" }}
+              style={{ fontSize: "1.5rem", marginTop: "1.2rem" ,marginLeft:"1rem"}}
             ></i>
           </div>
         </div>
@@ -99,7 +99,6 @@ function Sidebar() {
           Made By Vishal &nbsp;<i class="fa-regular fa-heart"></i>
         </div>
         </div>
-        
       </div>
     </>
   );
