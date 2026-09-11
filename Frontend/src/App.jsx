@@ -6,9 +6,8 @@ function App() {
     <>
    <div className="container-fluid">
     <div className="row">
-      <div className="col-1 sidebar"><Sidebar></Sidebar></div>
-      <div className="col-1"></div>
-      <div className="col-10"><ChatWindow></ChatWindow></div>
+      <div className="col-1 sidebar" style={{width:"20rem"}}><Sidebar></Sidebar></div>
+      <div className="col-9" style={{marginRight:"auto",padding:"0px",marginLeft:"0px"}}><ChatWindow></ChatWindow></div>
     </div>
    </div>
     </>

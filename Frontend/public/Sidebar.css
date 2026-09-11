@@ -59,6 +59,7 @@
     margin: 0px !important;
     padding: 0px !important;
     /* width: 18rem; */
+    border-right: 2px solid white;
 }
 a{
     text-decoration: none;

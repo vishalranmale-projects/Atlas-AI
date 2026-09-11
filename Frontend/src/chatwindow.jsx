@@ -1,5 +1,25 @@
 import "../public/chatwindow.css";
+import { useState } from "react";
+import axios from "axios";
 function ChatWindow() {
+  const [prompt, setPrompt] = useState("");
+  const [replay, setReplay] = useState(null);
+  const [currthreadId, setthreadId] = useState();
+  async function getReplay(e) {
+    e.preventDefault();
+     setPrompt("");
+    console.log(e.target.clientInput.value);
+   
+   await axios.post("http://localhost:3000/chats/chat",{
+      message:e.target.clientInput.value,
+      thread_id:"6a9ff605f4e6bbfb6c205eef",
+    }).then((responce)=>{
+      setReplay(()=>{
+        return responce.data;
+      })
+    })
+    
+  }
   return (
     <>
       <div className="container-fluid chatwindow d-flex flex-column">
@@ -42,12 +62,27 @@ function ChatWindow() {
         </div>
         <div className="row">
           <div className="col-2"></div>
-           <div className="col-10">
-            <form>
-                <input className="chatInp" placeholder="Enter Anything!"></input>
-                <a href="#" style={{marginLeft:"13px"}}><i class="fa-regular fa-paper-plane"></i></a>
+          <div className="col-10">
+            <form onSubmit={(e) => {
+                  getReplay(e)
+                }}>
+              <input
+                className="chatInp"
+                placeholder="Ask Anything!"
+                value={prompt}
+                name="clientInput"
+                onChange={(e)=>{
+                 setPrompt(e.target.value)
+                }}
+                
+              ></input>
+             <button className="btn btn-secondary btn" onSubmit={(e)=>{
+              getReplay(e.target.value);
+             }}>
+               Submit
+              </button>
             </form>
-           </div>
+          </div>
         </div>
 
         <div className="mt-auto">
