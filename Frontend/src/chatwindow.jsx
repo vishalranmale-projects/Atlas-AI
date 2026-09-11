@@ -2,8 +2,20 @@ import "../public/chatwindow.css";
 import { useState } from "react";
 import axios from "axios";
 import { ScaleLoader } from "react-spinners";
-function ChatWindow({prompt, setPrompt,replay, setReplay,currthreadId, setthreadId,Loading,setLoading,getReplay,Chats,newChat,
-              SetnewChat}) {
+function ChatWindow({
+  prompt,
+  setPrompt,
+  replay,
+  setReplay,
+  currthreadId,
+  setthreadId,
+  Loading,
+  setLoading,
+  getReplay,
+  Chats,
+  newChat,
+  SetnewChat,
+}) {
   return (
     <>
       <div className="container-fluid chatwindow d-flex flex-column">
@@ -38,39 +50,63 @@ function ChatWindow({prompt, setPrompt,replay, setReplay,currthreadId, setthread
         </div>
         <div className="row">
           <div className="col-1"></div>
-          <div
-            className="col-10 mainArea"
-            style={{ textAlign: "center" }}
-          >
-            {newChat ?<div><h1>Start A New Chat</h1></div>:Chats.map((chat)=>{
-               return (<div><span>{chat.role}:</span>&nbsp;&nbsp;<span>{chat.content}</span></div>)
-            })}
-            
-            {Loading?<div className="loader"> <ScaleLoader color="#fff"></ScaleLoader></div>:null}</div>
+          <div className="col-10 mainArea" style={{ textAlign: "center" }}>
+            {newChat ? (
+              <div>
+                <h1>Start A New Chat</h1>
+              </div>
+            ) : (
+              <div className="chats">
+                {Chats.map((chat) => {
+                  return (
+                    <div
+                      className={chat.role === "user" ? "userDiv" : "gptDiv"}
+                    >
+                      {chat.role === "user" ? (
+                        <p className="userMessage">{chat.content}</p>
+                      ) : (
+                        <p className="gptMessage">{chat.content}</p>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {Loading ? (
+              <div className="loader">
+                {" "}
+                <ScaleLoader color="#fff"></ScaleLoader>
+              </div>
+            ) : null}
+          </div>
           <div className="col-1"></div>
         </div>
-        
-       
+
         <div className="row">
           <div className="col-2"></div>
           <div className="col-10">
-            <form onSubmit={(e) => {
-                  getReplay(e)
-                }}>
+            <form
+              onSubmit={(e) => {
+                getReplay(e);
+              }}
+            >
               <input
                 className="chatInp"
                 placeholder="Ask Anything!"
                 value={prompt}
                 name="clientInput"
-                onChange={(e)=>{
-                 setPrompt(e.target.value)
+                onChange={(e) => {
+                  setPrompt(e.target.value);
                 }}
-                
               ></input>
-             <button className="btn btn-secondary btn" onSubmit={(e)=>{
-              getReplay(e.target.value);
-             }}>
-               Submit
+              <button
+                className="btn btn-secondary btn"
+                onSubmit={(e) => {
+                  getReplay(e.target.value);
+                }}
+              >
+                Submit
               </button>
             </form>
           </div>
