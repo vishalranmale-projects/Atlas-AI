@@ -3,9 +3,14 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 
-
-
-function Sidebar({Threads,setThreads,fetchthreads,getThreadDetails,SetnewChat}) {
+function Sidebar({
+  Threads,
+  setThreads,
+  fetchthreads,
+  getThreadDetails,
+  SetnewChat,
+  setthreadId,
+}) {
   return (
     <>
       <div
@@ -23,14 +28,24 @@ function Sidebar({Threads,setThreads,fetchthreads,getThreadDetails,SetnewChat}) 
           <div className="col-2" style={{ margin: "0px", padding: "0px" }}>
             <i
               class="fa-solid fa-bars"
-              style={{ fontSize: "1.5rem", marginTop: "1.2rem" ,marginLeft:"1rem"}}
+              style={{
+                fontSize: "1.5rem",
+                marginTop: "1.2rem",
+                marginLeft: "1rem",
+              }}
             ></i>
           </div>
         </div>
         <a href="#" className="r2" style={{ textDecoration: "none" }}>
-          <div onClick={()=>{
-            SetnewChat(true);
-          }}
+          <div
+            onClick={() => {
+              SetnewChat(() => {
+                return true;
+              });
+              setthreadId(() => {
+                return null;
+              });
+            }}
             className="d-flex align-items-center mb-0"
             style={{ marginLeft: "1.5rem" }}
           >
@@ -93,20 +108,30 @@ function Sidebar({Threads,setThreads,fetchthreads,getThreadDetails,SetnewChat}) 
           </div>
         </a>
 
-        <div className="row History-box" style={{marginLeft:"0.1rem"}}>
-           <ul style={{marginTop:"30px"}}>
-          {Threads.map((thread)=>{
-           return <li onClick={()=>{
-            getThreadDetails(thread._id)
-           }} className="History">{thread.title}</li>
-          })}
+        <div className="row History-box" style={{ marginLeft: "0.1rem" }}>
+          <ul style={{ marginTop: "30px" }}>
+            {Threads.map((thread) => {
+              return (
+                <li
+                  onClick={() => {
+                    getThreadDetails(thread._id);
+                    setthreadId(() => {
+                      return thread._id;
+                    });
+                  }}
+                  className="History"
+                >
+                  {thread.title}
+                </li>
+              );
+            })}
           </ul>
         </div>
         <div className="bottom mt-auto">
-          <div className="Line" style={{borderTop:"2px solid white"}}></div>
-        <div className="bottom-content">
-          Made By Vishal &nbsp;<i class="fa-regular fa-heart"></i>
-        </div>
+          <div className="Line" style={{ borderTop: "2px solid white" }}></div>
+          <div className="bottom-content">
+            Made By Vishal &nbsp;<i class="fa-regular fa-heart"></i>
+          </div>
         </div>
       </div>
     </>

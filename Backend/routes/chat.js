@@ -82,7 +82,7 @@ router.post("/chat", async (req, resp) => {
         thread = thread2;
       }
     }
-    const responce = await chatgpt(message);
+    let responce = await chatgpt(message);
     let chat2 = new chatModel({
       role: "assistant",
       content: responce,
@@ -93,7 +93,7 @@ router.post("/chat", async (req, resp) => {
     chat2.save();
     resp.send(responce);
   } catch (err) {
-    resp.status(404).send("Something Went Wrong!");
+    resp.status(404).send(err);
   }
 });
 
