@@ -17,5 +17,5 @@ let chatSchema = new mongoose.Schema({
     }
 });
 
-let chatModel =  mongoose.model("chatmodel",chatSchema);
+let chatModel =  mongoose.model("chatModel",chatSchema);
 module.exports = chatModel;

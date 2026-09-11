@@ -1,5 +1,11 @@
 import "../public/Sidebar.css";
-function Sidebar() {
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
+
+
+
+function Sidebar({Threads,setThreads,fetchthreads,getThreadDetails,SetnewChat}) {
   return (
     <>
       <div
@@ -22,7 +28,9 @@ function Sidebar() {
           </div>
         </div>
         <a href="#" className="r2" style={{ textDecoration: "none" }}>
-          <div
+          <div onClick={()=>{
+            SetnewChat(true);
+          }}
             className="d-flex align-items-center mb-0"
             style={{ marginLeft: "1.5rem" }}
           >
@@ -85,12 +93,13 @@ function Sidebar() {
           </div>
         </a>
 
-        <div className="row" style={{marginLeft:"0.1rem"}}>
-          <ul style={{marginTop:"30px"}}>
-            <li className="History">Thread-1</li>
-            <li className="History">Thread-2</li>
-            <li className="History">Thread-3</li>
-            <li className="History">Thread-4</li>
+        <div className="row History-box" style={{marginLeft:"0.1rem"}}>
+           <ul style={{marginTop:"30px"}}>
+          {Threads.map((thread)=>{
+           return <li onClick={()=>{
+            getThreadDetails(thread._id)
+           }} className="History">{thread.title}</li>
+          })}
           </ul>
         </div>
         <div className="bottom mt-auto">

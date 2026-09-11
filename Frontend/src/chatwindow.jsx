@@ -2,32 +2,8 @@ import "../public/chatwindow.css";
 import { useState } from "react";
 import axios from "axios";
 import { ScaleLoader } from "react-spinners";
-function ChatWindow() {
-  const [prompt, setPrompt] = useState("");
-  const [replay, setReplay] = useState(null);
-  const [currthreadId, setthreadId] = useState();
-  const[Loading,setLoading] = useState();
-  async function getReplay(e) {
-    e.preventDefault();
-     setPrompt("");
-     setLoading(true)
-    console.log(e.target.clientInput.value);
-   await axios.post("http://localhost:3000/chats/chat",{
-      message:e.target.clientInput.value,
-      thread_id:"6a9ff605f4e6bbfb6c205eef",
-    }).then((responce)=>{
-      setReplay(()=>{
-        return responce.data;
-      })
-      if(responce){
-        setLoading(()=>{
-          return false;
-        })
-      }
-      console.log(responce.data);
-    })
-    
-  }
+function ChatWindow({prompt, setPrompt,replay, setReplay,currthreadId, setthreadId,Loading,setLoading,getReplay,Chats,newChat,
+              SetnewChat}) {
   return (
     <>
       <div className="container-fluid chatwindow d-flex flex-column">
@@ -65,8 +41,11 @@ function ChatWindow() {
           <div
             className="col-10 mainArea"
             style={{ textAlign: "center" }}
-            
           >
+            {newChat ?<div><h1>Start A New Chat</h1></div>:Chats.map((chat)=>{
+               return (<div><span>{chat.role}:</span>&nbsp;&nbsp;<span>{chat.content}</span></div>)
+            })}
+            
             {Loading?<div className="loader"> <ScaleLoader color="#fff"></ScaleLoader></div>:null}</div>
           <div className="col-1"></div>
         </div>
