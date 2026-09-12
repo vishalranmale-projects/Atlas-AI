@@ -7,6 +7,7 @@ function App() {
   const [Threads, setThreads] = useState([]);
   const [Chats, SetChats] = useState([]);
   const [newChat, SetnewChat] = useState(true);
+  const [LatestReplay,setLatestReplay] = useState();
   async function fetchthreads() {
     let allThreads = await axios.get("http://localhost:3000/chats/threads");
     setThreads(() => {
@@ -25,17 +26,28 @@ function App() {
       });
   }
 
-  const [prompt, setPrompt] = useState("");
+  const [prompt, setPrompt] = useState();
   const [replay, setReplay] = useState(null);
   useEffect(() => {
-    fetchthreads();
+     fetchthreads();
+    if(!Chats.length) return;
+    const content = replay.split(" ");
+    let idx = 0;
+    const interval = setInterval(() => {
+      setLatestReplay(content.slice(0,idx+1).join(" "));
+      idx++;
+      if(idx>=content.length) clearInterval(interval);
+    }, 40);
+   
   }, [replay]);
   const [currthreadId, setthreadId] = useState(false);
   const [Loading, setLoading] = useState();
   async function getReplay(e) {
     console.log(currthreadId);
     e.preventDefault();
-    setPrompt("");
+    setPrompt(()=>{
+      return e.target.clientInput.value;
+    });
     setLoading(() => {
       return true;
     });
@@ -51,11 +63,12 @@ function App() {
       setLoading(() => {
         return false;
       });
+      setPrompt("");
       if (!newChat) {
         getThreadDetails(currthreadId);
       } else {
         const threads = await fetchthreads();
-
+         
         SetnewChat(()=>{
           return false;
         });
@@ -96,6 +109,8 @@ function App() {
               Chats={Chats}
               newChat={newChat}
               SetnewChat={SetnewChat}
+              LatestReplay={LatestReplay}
+              setLatestReplay={setLatestReplay}
             ></ChatWindow>
           </div>
         </div>
