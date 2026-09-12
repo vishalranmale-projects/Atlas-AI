@@ -29,7 +29,7 @@ router.get("/threads/:thread_id", async (req, resp) => {
 router.delete("/threads/:thread_id", async (req, resp) => {
   try {
     let id = req.params.thread_id;
-    let thread = threadModel.findByIdAndDelete(id);
+    let thread = await threadModel.findByIdAndDelete(id);
     if (!thread) {
       resp
         .status(404)

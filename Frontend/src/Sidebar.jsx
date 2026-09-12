@@ -10,6 +10,7 @@ function Sidebar({
   getThreadDetails,
   SetnewChat,
   setthreadId,
+  deleteThread,
 }) {
   return (
     <>
@@ -108,21 +109,34 @@ function Sidebar({
           </div>
         </a>
 
-        <div className="row History-box" style={{ marginLeft: "0.1rem" }}>
+        <div
+          className="row History-box d-flex"
+          style={{ marginLeft: "0.1rem" }}
+        >
           <ul style={{ marginTop: "30px" }}>
             {Threads.map((thread) => {
               return (
-                <li
-                  onClick={() => {
-                    getThreadDetails(thread._id);
-                    setthreadId(() => {
-                      return thread._id;
-                    });
-                  }}
-                  className="History"
-                >
-                  {thread.title}
-                </li>
+                <div className="History">
+                  <li
+                    className="d-flex align-items-center"
+                   
+                    style={{ paddingLeft: "2rem", paddingTop: "4px" }}
+                  >
+                    <div  onClick={() => {
+                      getThreadDetails(thread._id);
+                      setthreadId(() => {
+                        return thread._id;
+                      });
+                    }}>{thread.title}</div>
+                    <i
+                      class="fa-solid fa-trash historyDelete ms-auto"
+                      style={{ paddingRight: "0.6rem" }}
+                      onClick={() => {
+                        deleteThread(thread._id);
+                      }}
+                    ></i>
+                  </li>
+                </div>
               );
             })}
           </ul>

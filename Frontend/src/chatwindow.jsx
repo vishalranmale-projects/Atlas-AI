@@ -50,7 +50,7 @@ function ChatWindow({
             </div>
           </div>
         </div>
-        <div className="row" style={{height:"15rem"}}>
+        <div className="row" style={{ height: "15rem" }}>
           <div className="col-1"></div>
           <div className="col-10 mainArea" style={{ textAlign: "center" }}>
             {newChat ? (
@@ -59,47 +59,50 @@ function ChatWindow({
               </div>
             ) : (
               <div className="chats">
-                { LatestReplay==null? Chats.map((chat) => {
-                  return (
-                    <div
-                      className={chat.role === "user" ? "userDiv" : "gptDiv"}
-                    >
-                      {chat.role === "user" ? (
-                        <p className="userMessage">{chat.content}</p>
-                      ) : (
-                        <p className="gptMessage">{chat.content}</p>
-                      )}
-                    </div>
-                  );
-                }):
-                Chats.slice(0, -1).map((chat) => {
-                  return (
-                    <div
-                      className={chat.role === "user" ? "userDiv" : "gptDiv"}
-                    >
-                      {chat.role === "user" ? (
-                        <p className="userMessage">{chat.content}</p>
-                      ) : (
-                        <p className="gptMessage">{chat.content}</p>
-                      )}
-                    </div>
-                  );
-                })
-              }
+                {LatestReplay == null
+                  ? Chats.map((chat) => {
+                      return (
+                        <div
+                          className={
+                            chat.role === "user" ? "userDiv" : "gptDiv"
+                          }
+                        >
+                          {chat.role === "user" ? (
+                            <p className="userMessage">{chat.content}</p>
+                          ) : (
+                            <p className="gptMessage">{chat.content}</p>
+                          )}
+                        </div>
+                      );
+                    })
+                  : Chats.slice(0, -1).map((chat) => {
+                      return (
+                        <div
+                          className={
+                            chat.role === "user" ? "userDiv" : "gptDiv"
+                          }
+                        >
+                          {chat.role === "user" ? (
+                            <p className="userMessage">{chat.content}</p>
+                          ) : (
+                            <p className="gptMessage">{chat.content}</p>
+                          )}
+                        </div>
+                      );
+                    })}
                 {Chats.length > 0 && LatestReplay !== null && (
                   <div className="gptDiv">
                     <div className="gptMessage">{LatestReplay}</div>
                   </div>
-                 )}
+                )}
               </div>
             )}
           </div>
           <div className="col-1"></div>
         </div>
-         {Loading? <ScaleLoader color="#fff" height={20} width={3}></ScaleLoader>:null}
-       
-        <div></div>
-
+        {Loading ? (
+          <ScaleLoader color="#fff" height={20} width={3}></ScaleLoader>
+        ) : null}
         <div className="row" style={{ marginTop: "18rem" }}>
           <div className="col-2"></div>
           <div className="col-10">

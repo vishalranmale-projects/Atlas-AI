@@ -29,7 +29,13 @@ function App() {
       
       });
   }
-
+// Function To Delete An Particular Thread
+async function deleteThread(thread_id) {
+  console.log(thread_id);
+  await axios.delete(`http://localhost:3000/chats/threads/${thread_id}`);
+  fetchthreads();
+ 
+}
   const [prompt, setPrompt] = useState();
   const [replay, setReplay] = useState(null);
   useEffect(() => {
@@ -102,6 +108,7 @@ function App() {
               getThreadDetails={getThreadDetails}
               SetnewChat={SetnewChat}
               setthreadId={setthreadId}
+              deleteThread={deleteThread}
             ></Sidebar>
           </div>
           <div
