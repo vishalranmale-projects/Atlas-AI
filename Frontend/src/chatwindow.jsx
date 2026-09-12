@@ -16,7 +16,7 @@ function ChatWindow({
   newChat,
   SetnewChat,
   LatestReplay,
-  setLatestReplay
+  setLatestReplay,
 }) {
   return (
     <>
@@ -50,7 +50,7 @@ function ChatWindow({
             </div>
           </div>
         </div>
-        <div className="row" style={{height:"18rem"}}>
+        <div className="row" style={{height:"15rem"}}>
           <div className="col-1"></div>
           <div className="col-10 mainArea" style={{ textAlign: "center" }}>
             {newChat ? (
@@ -59,7 +59,7 @@ function ChatWindow({
               </div>
             ) : (
               <div className="chats">
-                {Chats.slice(0,-1).map((chat) => {
+                {Chats.slice(0, -1).map((chat) => {
                   return (
                     <div
                       className={chat.role === "user" ? "userDiv" : "gptDiv"}
@@ -72,27 +72,21 @@ function ChatWindow({
                     </div>
                   );
                 })}
-                {
-                  Chats.length>0 && LatestReplay !==null &&
+                {Chats.length > 0 && LatestReplay !== null && (
                   <div className="gptDiv">
-                    <div className="gptMessage">{ LatestReplay}</div>
+                    <div className="gptMessage">{LatestReplay}</div>
                   </div>
-                }
+                 )}
               </div>
             )}
-            </div>
-            {!Loading ? (
-              <div className="loader">
-                {" "}
-                <ScaleLoader color="#fff" height={20} width={3}></ScaleLoader>
-              </div>
-            ) : null}
-           
-          
+          </div>
           <div className="col-1"></div>
         </div>
+         {Loading? <ScaleLoader color="#fff" height={20} width={3}></ScaleLoader>:null}
+       
+        <div></div>
 
-        <div className="row mt-auto">
+        <div className="row" style={{ marginTop: "18rem" }}>
           <div className="col-2"></div>
           <div className="col-10">
             <form
@@ -121,7 +115,7 @@ function ChatWindow({
           </div>
         </div>
 
-        <div className="mt-auto m-0 p-0">
+        <div className="mt-auto m-0 pt-2">
           <div className="row">
             <p style={{ textAlign: "center" }}>
               Atlas-AI Can Make Mistakes. Check important info.

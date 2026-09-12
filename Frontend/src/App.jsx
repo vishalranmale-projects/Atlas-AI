@@ -23,6 +23,11 @@ function App() {
         console.log(responce.data.chats);
         SetChats(responce.data.chats);
         SetnewChat(false);
+        let chats = responce.data.chats
+        const lastChat = chats[chats.length - 1];
+      if (lastChat && lastChat.role === "assistant") {
+        setReplay(lastChat.content);
+      }
       });
   }
 
@@ -34,11 +39,13 @@ function App() {
     const content = replay.split(" ");
     let idx = 0;
     const interval = setInterval(() => {
-      setLatestReplay(content.slice(0,idx+1).join(" "));
+      setLatestReplay(()=>{ return content.slice(0,idx+1).join(" ")});
       idx++;
       if(idx>=content.length) clearInterval(interval);
     }, 40);
-   
+    return () => {
+        clearInterval(interval);
+    };
   }, [replay]);
   const [currthreadId, setthreadId] = useState(false);
   const [Loading, setLoading] = useState();
@@ -63,7 +70,9 @@ function App() {
       setLoading(() => {
         return false;
       });
-      setPrompt("");
+      setPrompt(()=>{
+        return "";
+      });
       if (!newChat) {
         getThreadDetails(currthreadId);
       } else {
