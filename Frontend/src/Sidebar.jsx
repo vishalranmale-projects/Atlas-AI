@@ -127,7 +127,9 @@ function Sidebar({
                       setthreadId(() => {
                         return thread._id;
                       });
-                    }}>{thread.title}</div>
+                    }}><div className="threadTitle">
+      <span>{thread.title}</span>
+    </div></div>
                     <i
                       class="fa-solid fa-trash historyDelete ms-auto"
                       style={{ paddingRight: "0.6rem" }}
