@@ -23,11 +23,10 @@ function App() {
         console.log(responce.data.chats);
         SetChats(responce.data.chats);
         SetnewChat(false);
-        let chats = responce.data.chats
-        const lastChat = chats[chats.length - 1];
-      if (lastChat && lastChat.role === "assistant") {
-        setReplay(lastChat.content);
-      }
+        setLatestReplay(()=>{
+          return null;
+        })
+      
       });
   }
 
@@ -35,6 +34,10 @@ function App() {
   const [replay, setReplay] = useState(null);
   useEffect(() => {
      fetchthreads();
+    //  if(replay ===null){
+    //   setLatestReplay(null);
+    //   return;
+    //  }
     if(!Chats.length) return;
     const content = replay.split(" ");
     let idx = 0;

@@ -59,19 +59,33 @@ function ChatWindow({
               </div>
             ) : (
               <div className="chats">
-                {Chats.slice(0, -1).map((chat) => {
+                { LatestReplay==null? Chats.map((chat) => {
                   return (
                     <div
                       className={chat.role === "user" ? "userDiv" : "gptDiv"}
                     >
                       {chat.role === "user" ? (
-                        <p className="userMessage">{chat.content || prompt}</p>
+                        <p className="userMessage">{chat.content}</p>
                       ) : (
                         <p className="gptMessage">{chat.content}</p>
                       )}
                     </div>
                   );
-                })}
+                }):
+                Chats.slice(0, -1).map((chat) => {
+                  return (
+                    <div
+                      className={chat.role === "user" ? "userDiv" : "gptDiv"}
+                    >
+                      {chat.role === "user" ? (
+                        <p className="userMessage">{chat.content}</p>
+                      ) : (
+                        <p className="gptMessage">{chat.content}</p>
+                      )}
+                    </div>
+                  );
+                })
+              }
                 {Chats.length > 0 && LatestReplay !== null && (
                   <div className="gptDiv">
                     <div className="gptMessage">{LatestReplay}</div>
