@@ -125,7 +125,7 @@ a{
     display: inline-block;
 }
 .threadTitle:hover span {
-    animation: titleScroll 4s linear infinite;
+    animation: titleScroll 7s linear infinite;
 }
 @keyframes titleScroll {
     0%, 20% {
