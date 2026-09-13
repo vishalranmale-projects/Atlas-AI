@@ -56,7 +56,7 @@
   display: none;
 }
 .historyDelete:hover{
-  font-size: 1.2rem;
+  color: red;
 }
 .History:hover .historyDelete {
     display: block;

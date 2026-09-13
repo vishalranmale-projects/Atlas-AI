@@ -8,6 +8,7 @@ function App() {
   const [Chats, SetChats] = useState([]);
   const [newChat, SetnewChat] = useState(true);
   const [LatestReplay,setLatestReplay] = useState();
+  const [currthreadId,setthreadId] = useState()
   async function fetchthreads() {
     let allThreads = await axios.get("http://localhost:3000/chats/threads");
     setThreads(() => {
@@ -26,13 +27,21 @@ function App() {
         setLatestReplay(()=>{
           return null;
         })
+        setthreadId(()=>{
+          return Thread_id;
+        })
       
       });
   }
 // Function To Delete An Particular Thread
 async function deleteThread(thread_id) {
-  console.log(thread_id);
-  await axios.delete(`http://localhost:3000/chats/threads/${thread_id}`);
+  const deleteThraed =  await axios.delete(`http://localhost:3000/chats/threads/${thread_id}`);
+  if(thread_id==currthreadId){
+    console.log("Same");
+    SetnewChat(()=>{
+      return true;
+    })
+  }
   fetchthreads();
  
 }
@@ -56,7 +65,7 @@ async function deleteThread(thread_id) {
         clearInterval(interval);
     };
   }, [replay]);
-  const [currthreadId, setthreadId] = useState(false);
+  
   const [Loading, setLoading] = useState();
   async function getReplay(e) {
     console.log(currthreadId);
@@ -64,6 +73,7 @@ async function deleteThread(thread_id) {
     setPrompt(()=>{
       return e.target.clientInput.value;
     });
+    console.log(prompt);
     setLoading(() => {
       return true;
     });

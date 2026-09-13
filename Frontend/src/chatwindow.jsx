@@ -87,6 +87,7 @@ function ChatWindow({
                           ) : (
                             <p className="gptMessage">{chat.content}</p>
                           )}
+                        
                         </div>
                       );
                     })}
