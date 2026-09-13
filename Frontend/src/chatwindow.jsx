@@ -122,8 +122,8 @@ function ChatWindow({
         {Loading ? (
           <ScaleLoader color="#fff" height={20} width={3}></ScaleLoader>
         ) : null}
-        <div className="row" style={{ marginTop: "18rem" }}>
-          <div className="col-2"></div>
+        <div className="row" style={{ marginTop: "18rem",paddingLeft:"25px" }}>
+          <div className="col-1"></div>
           <div className="col-10">
             <form
               onSubmit={(e) => {

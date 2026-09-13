@@ -32,6 +32,7 @@
   margin-top: 10px;
   border-radius: 15px;
   background-color: rgba(255, 255, 255, 0.1);
+  width: 55rem;
 }
 .chatInp {
   background-color: rgba(255, 255, 255, 0.1);
@@ -135,13 +136,13 @@
 }
 .dropDownDiv {
   position: absolute;
-  width: 150px;
+  width: 120px;
   height: 65px;
   background-color: #323232;
   border-radius: 10px;
   z-index: 1000;
   border: 2px solid white;
-  margin-left: 58rem;
+  margin-left: 62rem;
   padding: 0.5rem;
   text-align: left !important;
   margin-top: 5rem;
