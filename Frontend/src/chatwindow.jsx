@@ -18,6 +18,16 @@ function ChatWindow({
   LatestReplay,
   setLatestReplay,
 }) {
+
+  const [isOpened,setisOpned] = useState(false);
+  function userDropDown(){
+     setisOpned(()=>{
+      if(isOpened){
+        return false;
+      }
+      return true;
+     })
+  }
   return (
     <>
       <div className="container-fluid chatwindow d-flex flex-column">
@@ -33,7 +43,7 @@ function ChatWindow({
             </a>
           </div>
           <div className="right">
-            <div className="ms-auto">
+            <div className="ms-auto ShareNavicons">
               <a href="#" className="ms-auto">
                 <i
                   class="fa-solid fa-arrow-up-from-bracket"
@@ -42,14 +52,22 @@ function ChatWindow({
                 Share
               </a>
             </div>
-            <div>
+            <div className="Navicons">
               <i className="fa-solid fa-ellipsis"></i>
             </div>
-            <div>
-              <i className="fa-regular fa-circle-user"></i>
+            <div className="Navicons" onClick={()=>{
+                userDropDown();
+              }}>
+              <i  className="fa-regular fa-circle-user"></i>
             </div>
           </div>
         </div>
+        {isOpened ?
+        <div className="dropDownDiv">
+          <div className="dopdownitem"><a href="#"><i class="fa-solid fa-gear"></i>Settings</a></div>
+          <div className="dopdownitem"><a href="#"><i class="fa-solid fa-caret-up"></i>Upgrade Plan</a></div>
+          <div className="dopdownitem"><a href="#"><i class="fa-solid fa-right-from-bracket"></i>Logout</a></div>
+        </div>:null}
         <div className="row" style={{ height: "15rem" }}>
           <div className="col-1"></div>
           <div className="col-10 mainArea" style={{ textAlign: "center" }}>
