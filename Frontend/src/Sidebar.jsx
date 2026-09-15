@@ -11,6 +11,7 @@ function Sidebar({
   SetnewChat,
   setthreadId,
   deleteThread,
+  currthreadId
 }) {
   return (
     <>
@@ -119,17 +120,20 @@ function Sidebar({
                 <div className="History">
                   <li
                     className="d-flex align-items-center"
-                   
                     style={{ paddingLeft: "2rem", paddingTop: "4px" }}
                   >
-                    <div  onClick={() => {
-                      getThreadDetails(thread._id);
-                      setthreadId(() => {
-                        return thread._id;
-                      });
-                    }}><div className="threadTitle">
-      <span>{thread.title}</span>
-    </div></div>
+                    <div
+                      onClick={() => {
+                        getThreadDetails(thread._id);
+                        setthreadId(() => {
+                          return thread._id;
+                        });
+                      }}
+                    >
+                      <div className="threadTitle">
+                        <span>{thread.title}</span>
+                      </div>
+                    </div>
                     <i
                       class="fa-solid fa-trash historyDelete ms-auto"
                       style={{ paddingRight: "0.6rem" }}

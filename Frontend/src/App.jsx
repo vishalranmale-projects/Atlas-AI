@@ -119,6 +119,7 @@ async function deleteThread(thread_id) {
               SetnewChat={SetnewChat}
               setthreadId={setthreadId}
               deleteThread={deleteThread}
+              currthreadId={currthreadId}
             ></Sidebar>
           </div>
           <div
