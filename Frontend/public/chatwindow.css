@@ -1,25 +1,35 @@
+.chatwindow,
+.chatwindow * {
+  box-sizing: border-box;
+}
+
 .chatwindow {
   height: 100vh;
-  margin-left: 45px;
-  width: 70rem;
+  height: 100dvh;
+  width: 100%;
+  max-width: 70rem;
+  margin: 0 auto;
+  padding: 0 1rem;
   position: relative;
 }
+
 .Nav {
   height: 2.5rem;
   width: 100%;
-  margin: 0.5rem 0;
+  margin: 1.5rem 0 0.5rem;
   display: flex !important;
   flex-direction: row !important;
   align-items: center;
-  margin-top: 23px;
 }
+
 .middle {
-  margin-left: 28rem;
-  background-color: oklab(28.499999999999996% 0.06462 -0.09784);
+  margin: 0 auto;
+  background-color: oklab(28.5% 0.06462 -0.09784);
   width: 8rem;
   height: 2.3rem;
   border-radius: 12px;
 }
+
 .right {
   display: flex !important;
   flex-direction: row;
@@ -27,23 +37,29 @@
   padding-right: 25px;
   gap: 30px;
 }
+
 .mainArea {
-  height: 32rem;
+  height: calc(100vh - 12rem);
+  height: calc(100dvh - 12rem);
+  min-height: 15rem;
   margin-top: 10px;
   border-radius: 15px;
   background-color: rgba(255, 255, 255, 0.1);
-  width: 55rem;
+  width: 100%;
+  max-width: 55rem;
 }
+
 .chatInp {
   background-color: rgba(255, 255, 255, 0.1);
   height: 3rem;
   margin-top: 18px;
+  margin-left: 0;
   border-radius: 15px;
-  display: inline !important;
+  display: inline-block !important;
   font-size: 1.2rem;
-  width: 40rem;
+  width: min(40rem, calc(100% - 8rem));
   text-align: center;
-  margin-left: 2.3rem;
+  border: none;
   box-shadow:
     rgba(0, 0, 0, 0.05) 0 54px 55px,
     rgba(0, 0, 0, 0.05) 0 -12px 30px,
@@ -54,49 +70,65 @@
 .chatInp:focus {
   outline: none;
 }
+
 .sendIcon {
   margin-top: 2.4rem;
 }
+
 .ic {
   color: rgba(255, 255, 255, 0.8);
   font-size: 1.3rem;
   margin-top: 0.9rem;
   padding-top: 1rem;
+  transition:
+    transform 0.15s,
+    color 0.15s;
 }
 .ic:hover {
-  font-size: 1.5rem;
-  color: rgb(255, 255, 255);
+  transform: scale(1.15);
+  color: #fff;
 }
+
 .btn {
   color: white;
   background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  cursor: pointer;
   margin-left: 1rem;
   height: 3rem;
   width: 6rem;
   border-radius: 15px;
   font-size: 1rem;
   font-weight: 600;
+  transition: transform 0.15s;
 }
 .btn:hover {
   transform: scale(1.02);
 }
+
 .loader {
-  margin-top: 31.5rem !important;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
-  flex-direction: row;
   justify-content: center;
+  align-items: center;
   height: 50px !important;
   width: 50px !important;
   border: 2px solid white;
   text-align: center;
-  padding-top: 20px !important;
 }
+
 .chats {
+  width: 100%;
   max-width: 800px;
-  padding: 8rem;
+  height: 100%;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
   overflow-y: auto;
-  height: 15rem;
 }
+
 .userDiv {
   display: flex;
   justify-content: flex-end;
@@ -106,46 +138,50 @@
   text-align: left;
   font-size: 0.9rem;
 }
+
 .userMessage {
   background-color: #323232;
   padding: 10px 20px;
   border-radius: 14px;
-  margin-left: 15rem;
-  max-width: 500px;
+  max-width: min(500px, 80%);
   width: fit-content;
+  overflow-wrap: anywhere;
 }
-.gptMessage {
+
+/* Scrollbar */
+.chats {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
 }
 .chats::-webkit-scrollbar {
   width: 10px;
 }
-
 .chats::-webkit-scrollbar-track {
   background: transparent;
 }
-
 .chats::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.25);
   border-radius: 10px;
   border: 2px solid transparent;
   background-clip: content-box;
 }
-
 .chats::-webkit-scrollbar-thumb:hover {
   background-color: rgba(255, 255, 255, 0.4);
 }
+
+/* Dropdown: anchored to .chatwindow's top-right instead of margin offsets */
 .dropDownDiv {
   position: absolute;
+  top: 4.5rem;
+  right: 25px;
   width: 120px;
   height: 65px;
   background-color: #323232;
   border-radius: 10px;
   z-index: 1000;
   border: 2px solid white;
-  margin-left: 62rem;
   padding: 0.5rem;
   text-align: left !important;
-  margin-top: 5rem;
 }
 .dopdownitem {
   margin-bottom: 0.25rem;
@@ -153,9 +189,8 @@
   height: 1.2rem;
 }
 .dopdownitem i {
-  margin-right: 0.5rem;
+  margin: 0 0.5rem;
   font-size: 0.8rem;
-  margin-left: 0.5rem;
 }
 .dopdownitem a {
   font-size: 0.8rem;
@@ -164,25 +199,23 @@
   background-color: rgba(180, 180, 180, 0.1);
   border-radius: 5px;
 }
-.Navicons{
-    height: 0.8rem;
-    width: 3rem;
-    text-align: center;
-    padding-top: 0.5rem;
-    padding-bottom: 0.8rem;
-    border-radius: 8px;
+
+.Navicons,
+.ShareNavicons {
+  height: 0.8rem;
+  text-align: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.8rem;
+  border-radius: 8px;
 }
-.ShareNavicons{
-    height: 0.8rem;
-    width: 5rem;
-    text-align: center;
-    padding-top: 0.5rem;
-    padding-bottom: 0.8rem;
-    border-radius: 8px;
+.Navicons {
+  width: 3rem;
 }
-.ShareNavicons :hover{
-     background-color: #323232;
+.ShareNavicons {
+  width: 5rem;
 }
-.Navicons:hover{
-   background-color: #323232;
+
+.Navicons:hover,
+.ShareNavicons:hover {
+  background-color: #323232;
 }
